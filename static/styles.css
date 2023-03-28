@@ -1,0 +1,25 @@
+/* Define the style for all buttons */
+button {
+    border: none; /* remove the default border */
+    border-radius: 10px; /* add rounded corners */
+    color: #fff; /* set text color to white */
+    cursor: pointer; /* change cursor to pointer on hover */
+    font-size: 16px; /* set font size */
+    padding: 10px 20px; /* add padding around text */
+  }
+  
+  /* Define the style for red buttons */
+  button.red {
+    background-color: #f44336; /* set background color to red */
+  }
+  
+  /* Define the style for red buttons on hover */
+  button.red:hover {
+    background-color: #d32f2f; /* set darker background color on hover */
+  }
+  
+  /* Define the style for red buttons when active/pressed */
+  button.red:active {
+    background-color: #b71c1c; /* set even darker background color when active/pressed */
+  }
+  
