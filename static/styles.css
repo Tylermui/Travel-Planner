@@ -11,6 +11,7 @@
 
 body {
   margin-left: 15px;
+  padding: 1vh;
   color: black;
   background-color: 	#fff4d1;
 }
@@ -36,7 +37,13 @@ button {
   button.red:active {
     background-color: #b71c1c; /* set even darker background color when active/pressed */
   }
-
+[contenteditable]:hover {
+    background-color: #f1f1f1;
+  }
+#addContainer {
+    display: flex;
+    flex-direction: column;
+  }
 
   
   
