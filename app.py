@@ -1,3 +1,9 @@
+# ---- Workspace setup instructions: ----
+# pip install flask
+
+# ---- Running the program ----
+# flask --app app run 
+
 from flask import Flask, render_template, request
 
 app = Flask(__name__)
