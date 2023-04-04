@@ -39,11 +39,25 @@ button {
   }
 [contenteditable]:hover {
     background-color: #f1f1f1;
+    
   }
 #addContainer {
     display: flex;
     flex-direction: column;
   }
 
+#banner {
+  /* The image used */
+  height: 200px;
+  background-size:contain;
+  background-repeat: no-repeat;
+  background-image:
+  url('https://source.unsplash.com/1600x900/?city');
+  background-position:right
+}
+ul {
+  margin-left: 15px;
+  padding: 1vh;
+}
   
   

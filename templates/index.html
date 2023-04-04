@@ -8,11 +8,16 @@
 </head>
 
 <body>
-  <h1 class="title"><center>Travel Planner</center></h1>
-  <br>
-  <h1 contentEditable="true">Trip to ...</h1>
+  <div id="banner">
+    <h1 class="title"><center>Travel Planner</center></h1>
+  </div>
+  <h1 contentEditable="true" id="trip">Trip to ...</h1>
   <br>
   <h1 id="overview">Overview</h1>
+  <button id="add" class="red">Add</button>
+  <ul id="overviewList">
+    <li contentEditable="true">new Item</li>
+  </ul>
   <br>
   <h1 id="itinerary">Itinerary</h1>
   <textarea rows="10" cols="50">enter text here</textarea>
@@ -22,7 +27,7 @@
   <div id="addContainer"></div>
 
 
-  <button id="add" class="red">Add Section</button>
+  <button id="addSection" class="red">Add Section</button>
   <script src="/static/index.js"></script>
 </body>
 </html>
