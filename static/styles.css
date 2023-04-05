@@ -16,6 +16,10 @@ body {
   background-color: 	#fff4d1;
 }
 
+#title {
+  padding-top: 5px;
+}
+
 /* Define the style for all buttons */
 button {
     border: none; /* remove the default border */
@@ -48,6 +52,7 @@ button {
 
 #banner {
   /* The image used */
+  padding: 3%;
   height: 200px;
   background-size:contain;
   background-repeat: no-repeat;
@@ -55,6 +60,7 @@ button {
   url('https://source.unsplash.com/1600x900/?city');
   background-position:right
 }
+
 ul {
   margin-left: 15px;
   padding: 1vh;

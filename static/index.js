@@ -12,19 +12,13 @@ document.getElementById("addSection").addEventListener("click", function() {
 	container.appendChild(newSection);
 });
 
-// document.getElementById("add").addEventListener("click", function() {
-//     var container = document.getElementById("addContainer");
-//     var newSection = document.createElement("section");
-// 	var newH1 = document.createElement("h1");
-// 	newH1.contentEditable = true;
-// 	newH1.textContent = "New Section";
-// 	var newSubnotes = document.createElement("ul");
-// 	newSubnotes.id = "subnotes";
-// 	newSubnotes.contentEditable = true;
-// 	newSection.appendChild(newH1);
-// 	newSection.appendChild(newSubnotes);
-// 	container.appendChild(newSection);
-// });
+document.getElementById("add").addEventListener("click", function() {
+    var container = document.getElementById("overviewList");
+    var list = document.createElement("li");
+    list.appendChild(document.createTextNode("New Item"));
+    list.contentEditable = true;
+	container.appendChild(list);
+});
 
 
 document.getElementById('trip').addEventListener('keydown', function(event) {
@@ -48,6 +42,5 @@ document.getElementById('trip').addEventListener('keydown', function(event) {
 //         // add the list item to the unordered list
 //         document.getElementById("subnotes").appendChild(li);
 //     }
-    
 //   });
 
