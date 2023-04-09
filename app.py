@@ -2,13 +2,14 @@
 # python3 -m venv travel-env
 # source travel-env/bin/activate
 # pip install flask
+# pip install flask_sqlalchemy
 
 # ---- Running the program ----
 # source travel-env/bin/activate
 # flask --app app run 
 
 from flask import Flask, render_template, redirect, url_for, request, session, g
-
+from flask_sqlalchemy import SQLAlchemy
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'
 
@@ -29,8 +30,9 @@ def home(user_id):
     if not g.user:
         return redirect(url_for('login'))
 # find a way to save the content of the page for each user and then render it to the corresponding ID
-    elif g.user:
-        return redirect(url_for('home', user_id))
+    # elif g.user:
+    #     return redirect(url_for('home', user_id))
+    
     return render_template("index.html")
 
 # Route for handling the login page logic
