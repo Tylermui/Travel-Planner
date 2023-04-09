@@ -35,5 +35,6 @@ document.getElementById('trip').addEventListener('keydown', function(event) {
 
 document.getElementById('logout-btn').addEventListener('click', function() {
     window.location.href = "/logout";
+    
   });
 
