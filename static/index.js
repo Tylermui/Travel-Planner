@@ -33,14 +33,7 @@ document.getElementById('trip').addEventListener('keydown', function(event) {
   
 });
 
-
-// document.getElementById('ul').addEventListener('keydown', function(event) {
-//     if (event.key === 'Enter') {
-//         var li = document.createElement("li");
-//         // add text to the list item
-//         li.appendChild(document.createTextNode("New Item"));
-//         // add the list item to the unordered list
-//         document.getElementById("subnotes").appendChild(li);
-//     }
-//   });
+document.getElementById('logout-btn').addEventListener('click', function() {
+    window.location.href = "/logout";
+  });
 
