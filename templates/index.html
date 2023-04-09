@@ -10,6 +10,7 @@
 <body>
   <div id="banner">
     <h1 class="title"><center>Travel Planner</center></h1>
+    <a href="{{ url_for('logout') }}">Log out</a>
   </div>
   <h1 contentEditable="true" id="trip">Trip to ...</h1>
   <br>
@@ -28,8 +29,8 @@
 
   <br>
   <div id="addContainer"></div>
-
   <button id="addSection" class="red">Add Section</button>
+  
   <script src="/static/index.js"></script>
 </body>
 </html>
