@@ -2,16 +2,35 @@
 # python3 -m venv travel-env
 # source travel-env/bin/activate
 # pip install flask
-# pip install flask_sqlalchemy
 
 # ---- Running the program ----
 # source travel-env/bin/activate
 # flask --app app run 
 
 from flask import Flask, render_template, redirect, url_for, request, session, g
-from flask_sqlalchemy import SQLAlchemy
+import sqlite3
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'
+
+db = sqlite3.connect('my_database.db')
+cursor = db.cursor()
+cursor.execute('''
+    CREATE TABLE pages (
+        id INTEGER PRIMARY KEY,
+        user_id INTEGER,
+        html TEXT
+    )
+''')
+cursor.execute('''
+    CREATE TABLE users (
+        user_id INTEGER PRIMARY KEY,
+        username STRING
+        password STRING
+    )
+''')
+db.commit()
+db.close()
+
 
 class User:
     def __init__(self, id, username, password):
@@ -25,7 +44,7 @@ users.append(User(id=2, username='Jason', password='secret'))
 users.append(User(id=3, username='Thomas', password='somethingsimple'))
 
 # Route to the main page
-@app.route('/home/<user_id>')
+@app.route('/user/<user_id>/planner')
 def home(user_id):
     if not g.user:
         return redirect(url_for('login'))
@@ -72,6 +91,13 @@ def before_request():
 @app.route('/logout')
 def logout():
     session.pop('user_id', None)
+    # new code below this
+    user_id = request.args.get('user_id')
+    updated_html = request.args.get('updated_html')
+    # save the updated HTML template to the database using the user_id as a reference
+    db.execute('INSERT INTO pages (user_id, html) VALUES (?, ?)', (user_id, updated_html))
+    db.commit()
+    
     return redirect(url_for('login'))
 
 # always routes to the login page when loading up the app

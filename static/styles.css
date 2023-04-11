@@ -43,7 +43,6 @@ button {
   }
 [contenteditable]:hover {
     background-color: #f1f1f1;
-    
   }
 #addContainer {
     display: flex;
