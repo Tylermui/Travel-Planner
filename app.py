@@ -14,22 +14,6 @@ app.secret_key = 'your_secret_key'
 
 db = sqlite3.connect('my_database.db')
 cursor = db.cursor()
-cursor.execute('''
-    CREATE TABLE pages (
-        id INTEGER PRIMARY KEY,
-        user_id INTEGER,
-        html TEXT
-    )
-''')
-cursor.execute('''
-    CREATE TABLE users (
-        user_id INTEGER PRIMARY KEY,
-        username STRING
-        password STRING
-    )
-''')
-db.commit()
-db.close()
 
 
 class User:
@@ -52,32 +36,33 @@ def home(user_id):
     # elif g.user:
     #     return redirect(url_for('home', user_id))
     
-    return render_template("index.html")
+    # Try to get the html field from the DB
+    # if it exists for this user, then return reder_template with body_content=body
+    # else just return render_template
+    return render_template("index.html") #, body_content="<h1>Current Trip</h1>")
 
-# Route for handling the login page logic
-@app.route('/login', methods=['GET', 'POST'])
-def login():
-    # error = None
-    # if request.method == 'POST':
-    #     if request.form['username'] != 'admin' or request.form['password'] != 'admin':
-    #         error = 'Invalid Credentials. Please try again.'
-    #     else:
-    #         return redirect(url_for('home'))
-    # return render_template('login.html', error=error)
+# Route for handling the save page logic
+@app.route('/save', methods=['POST'])
+def save():
+    # body = request.post['body']
+    username = session.get('username')
+    
+    # retrieving the variable from the request
     if request.method == 'POST':
-        session.pop('user_id', None)
+        data = request.get_json()
+        body = data['body']
+        # # save body as html text to database for userid, need to get the userid
+        # cursor.execute("INSERT INTO pages (user_id, html) VALUES (?, ?)", (userid, body))
+        # db.commit()
+        # db.close()
+    
+        return 'done'
 
-        username = request.form['username']
-        password = request.form['password']
-        
-        user = [x for x in users if x.username == username][0]
-        if user and user.password == password:
-            session['user_id'] = user.id
-            return redirect(url_for('home', user_id = user.id))
+# always routes to the login page when loading up the app
+@app.route('/')
+def direct():
+    return redirect(url_for('auth.login'))
 
-        return redirect(url_for('login'))
-
-    return render_template('login.html')
 
 @app.before_request
 def before_request():
@@ -86,24 +71,6 @@ def before_request():
     if 'user_id' in session:
         user = [x for x in users if x.id == session['user_id']][0]
         g.user = user
-
-# Route for handling the logout button
-@app.route('/logout')
-def logout():
-    session.pop('user_id', None)
-    # new code below this
-    user_id = request.args.get('user_id')
-    updated_html = request.args.get('updated_html')
-    # save the updated HTML template to the database using the user_id as a reference
-    db.execute('INSERT INTO pages (user_id, html) VALUES (?, ?)', (user_id, updated_html))
-    db.commit()
-    
-    return redirect(url_for('login'))
-
-# always routes to the login page when loading up the app
-@app.route('/')
-def direct():
-    return redirect(url_for('login'))
 
 if __name__ == "__main__":
     app.run(debug = True)

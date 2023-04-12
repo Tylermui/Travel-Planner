@@ -29,12 +29,33 @@ document.getElementById('trip').addEventListener('keydown', function(event) {
     const words = inputValue.split(" ")    
     document.getElementById('banner').style.backgroundImage = 
           "url('https://source.unsplash.com/1600x900/?" + words[2] + "')";
-  }
-  
+  }  
 });
 
+
 document.getElementById('logout-btn').addEventListener('click', function() {
+    var body = document.getElementsByTagName('body').innerText;
+    // send body variable to the server using ajax: /save route as POST request
+
+    // create a new XMLHttpRequest object
+    var xhttp = new XMLHttpRequest();
+    // set the callback function to handle the response
+    xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        console.log("Response received: " + this.responseText);
+      }
+    };
+    // open a new POST request with the Flask route as the endpoint
+    xhttp.open("POST", "/save", true);
+    // set the request header to send data as JSON
+    xhttp.setRequestHeader("Content-type", "application/json");
+    // create an object to send as data with the request
+    var data = JSON.stringify({"body": body});
+    // send the request with the data
+    xhttp.send(data);
+
+    //somehow get the userid in this as well
+
     window.location.href = "/logout";
     
   });
-

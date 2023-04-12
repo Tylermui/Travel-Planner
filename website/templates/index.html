@@ -7,6 +7,9 @@
   <link rel="stylesheet" href="/static/styles.css">
 </head>
 
+{% if body_content %}
+  {{ body_content }}
+{% else %}
 <body>
   <div id="banner">
     <h1 class="title"><center>Travel Planner</center></h1>
@@ -36,4 +39,6 @@
 
   <script src="/static/index.js"></script>
 </body>
+{% endif %}
+
 </html>
