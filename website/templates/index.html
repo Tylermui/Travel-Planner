@@ -1,44 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <title>Travel Planner</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
-  <link rel="stylesheet" href="/static/styles.css">
-</head>
+{% extends "base.html" %} {% block title %}Home{% endblock %} {% block content%}
 
 {% if body_content %}
-  {{ body_content }}
+{{body_content}}
 {% else %}
 <body>
   <div id="banner">
     <h1 class="title"><center>Travel Planner</center></h1>
-    <button class="red" id="logout-btn">Log out</button>
-    <form action="" method="post">
-      <input class="btn btn-default" type="submit" value="Logout" id="logout-btn">
-    </form>
+    <button type="submit" id="Save" >Save</button>
   </div>
-  <h1 contentEditable="true" id="trip">Trip to ...</h1>
-  <br>
-  <h1 id="overview">Overview</h1>
-  <button id="add" class="red">Add</button>
-  <div id="bulletpoints">
-    <ul id="overviewList">
-      <li contentEditable="true">New Item</li>
-    </ul>
-  </div>
-  <br>
-  <h1 id="itinerary">Itinerary</h1>
-  <textarea rows="10" cols="50">enter text here</textarea>
-  <br>
-  <h1 id="flights">Flights</h1>
+    <h1 contentEditable="true" id="trip">Trip to ...</h1>
+    <br>
+    <h1 id="overview">Overview</h1>
+    <button id="add" class="red">Add</button>
+    <div id="bulletpoints">
+      <ul id="overviewList">
+        <li contentEditable="true">New Item</li>
+      </ul>
+    </div>
+    <br>
+    <h1 id="itinerary">Itinerary</h1>
+    <textarea rows="10" cols="50">enter text here</textarea>
+    <br>
+    <h1 id="flights">Flights</h1>
 
-  <br>
-  <div id="addContainer"></div>
-  <button id="addSection" class="red">Add Section</button>
-
-  <script src="/static/index.js"></script>
-</body>
+    <br>
+    <div id="addContainer"></div>
+    <button id="addSection" class="red">Add Section</button>
+  </body>
 {% endif %}
-
-</html>
+{% endblock %}

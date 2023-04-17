@@ -32,9 +32,9 @@ document.getElementById('trip').addEventListener('keydown', function(event) {
   }  
 });
 
-
-document.getElementById('logout-btn').addEventListener('click', function() {
-    var body = document.getElementsByTagName('body').innerText;
+document.addEventListener('DOMContentLoaded', function() {
+  document.getElementById('Save').addEventListener('click', function() {
+    var body = document.body.innerText;
     // send body variable to the server using ajax: /save route as POST request
 
     // create a new XMLHttpRequest object
@@ -46,16 +46,12 @@ document.getElementById('logout-btn').addEventListener('click', function() {
       }
     };
     // open a new POST request with the Flask route as the endpoint
-    xhttp.open("POST", "/save", true);
+    xhttp.open("POST", "/views/save");
     // set the request header to send data as JSON
-    xhttp.setRequestHeader("Content-type", "application/json");
+    xhttp.setRequestHeader("Content-type", "text/plain");
     // create an object to send as data with the request
-    var data = JSON.stringify({"body": body});
+    // var data = JSON.stringify({"body": body});
     // send the request with the data
-    xhttp.send(data);
-
-    //somehow get the userid in this as well
-
-    window.location.href = "/logout";
-    
+    xhttp.send(body);    
   });
+});
