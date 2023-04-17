@@ -18,7 +18,6 @@ def home():
             body_content = temp
     except:
         pass        
-    print(body_content)
     return render_template("index.html", user=current_user, body_content=body_content)
 
 # Route for handling the save page logic
