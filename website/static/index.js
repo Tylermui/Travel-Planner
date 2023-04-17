@@ -34,9 +34,8 @@ document.getElementById('trip').addEventListener('keydown', function(event) {
 
 document.addEventListener('DOMContentLoaded', function() {
   document.getElementById('Save').addEventListener('click', function() {
-    var body = document.body.innerText;
+    var body = document.body.innerHTML;
     // send body variable to the server using ajax: /save route as POST request
-
     // create a new XMLHttpRequest object
     var xhttp = new XMLHttpRequest();
     // set the callback function to handle the response
@@ -46,11 +45,9 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     };
     // open a new POST request with the Flask route as the endpoint
-    xhttp.open("POST", "/views/save");
+    xhttp.open("POST", "/save");
     // set the request header to send data as JSON
     xhttp.setRequestHeader("Content-type", "text/plain");
-    // create an object to send as data with the request
-    // var data = JSON.stringify({"body": body});
     // send the request with the data
     xhttp.send(body);    
   });

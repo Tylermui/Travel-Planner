@@ -5,30 +5,12 @@ from . import db   ##means from __init__.py import db
 from flask_login import login_user, login_required, logout_user, current_user
 auth = Blueprint('auth', __name__)
 
-
 # Route for handling the login page logic
 @auth.route('/login', methods=['GET', 'POST'])
 def login():
-    # if request.method == 'POST':
-    #     session.pop('user_id', None)
-    #     username = request.form['username']
-    #     password = request.form['password']
-        # validate the username and password here
-        # session['username'] = username
-        # inserting username and password into users table
-        # cursor.execute("INSERT INTO users (username, password) VALUES (?, ?)", (username, password))
-        # db.commit()
-        # db.close()
-    #     user = [x for x in users if x.username == username][0]
-    #     if user and user.password == password:
-    #         session['user_id'] = user.id
-    #         return redirect(url_for('home', user_id = user.id))
-    #     return redirect(url_for('save'))
-    # return render_template('login.html')
     if request.method == 'POST':
         email = request.form.get('email')
         password = request.form.get('password')
-        # setting the user to the first part of their email
         user = User.query.filter_by(email=email).first()
         if user:
             if check_password_hash(user.password, password):
