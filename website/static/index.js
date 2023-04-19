@@ -34,7 +34,7 @@ document.getElementById('trip').addEventListener('keydown', function(event) {
 
 document.addEventListener('DOMContentLoaded', function() {
   document.getElementById('Save').addEventListener('click', function() {
-    var body = document.body.innerHTML;
+    var body = document.getElementById("tripcontainer").innerHTML;
     // send body variable to the server using ajax: /save route as POST request
     // create a new XMLHttpRequest object
     var xhttp = new XMLHttpRequest();
