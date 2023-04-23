@@ -8,6 +8,15 @@ At the home page, the user has capabilities to add sections and bullet points al
 
 To run the Dockerfile on localhost: 
 
+First:
+git clone https://github.com/Tylermui/Travel-Planner.git
+Second:
+cd Travel-Planner
+Third:
+touch Dockerfile
+Fourth:
+docker build -t travel-planner .
+Last:
 docker build -t travel-planner-app .
 docker run -p 5000:5000 travel-planner-app
 <div>
