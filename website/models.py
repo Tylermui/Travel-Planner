@@ -7,6 +7,8 @@ class Page(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     data = db.Column(db.String(100000))
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    lat =  db.Column(db.Float)
+    lng =  db.Column(db.Float)
 
 
 class User(db.Model, UserMixin):

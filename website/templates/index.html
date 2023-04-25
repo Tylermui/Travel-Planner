@@ -1,34 +1,95 @@
-
-{% extends "base.html" %}
-{% block content%}
+{% extends "base.html" %} {% block content%}
 {% if body_content %}
-
-{{body_content|safe}}  
+{{body_content|safe}}
 {% else %}
+
 <div id = "tripcontainer">
-  <div id="banner">
-    <h1 class="title"><center>{{user.first_name}}'s Travel Planner</center></h1>
-    <button type="submit" id="Save" >Save</button>
-  </div>
-    <h1 contentEditable="true" id="trip">Trip to ...</h1>
-    <br>
-    <h1 id="overview">Overview</h1>
-    <button id="add" class="red">Add</button>
-    <div id="bulletpoints">
-      <ul id="overviewList">
-        <li contentEditable="true">New Item</li>
-      </ul>
+  <div id = "wrapper">
+    <div id="banner">
+      <h1 class="title"><center>{{user.first_name}}'s Travel Planner</center></h1>
     </div>
-    <br>
-    <h1 id="itinerary">Itinerary</h1>
-    <textarea rows="10" cols="50">enter text here</textarea>
-    <br>
-    <h1 id="flights">Flights</h1>
-    <ul id="flightsList" contentEditable="true">
-    </ul>
-    <br>
-    <div id="addContainer"></div>
-    <button id="addSection" class="red">Add Section</button>
+    <div id = "contentWrapper">
+      <div id = "TripWrapper">
+        <button type="submit" id="Save" class="red" >Save</button>
+        <h1 contentEditable="true" id="trip">Trip to ...</h1>
+        <br>
+        <h1 id="overview">Overview</h1>
+        <button id="add" class="red">Add</button> 
+        <div id="bulletpoints">
+          <ul id="overviewList">
+            <li contentEditable="true">New Item</li>
+          </ul>
+        </div>
+        <br>
+        <h1 id="itinerary">Itinerary</h1>
+        <textarea class = "boxArea" rows="7" cols="50" id="itineraryTextArea">enter text here</textarea>
+        <br>
+        <h1 id = "budget">Budget & Spending</h1>
+        <textarea class = "boxArea" rows = "7" cols = "50" id="budgetTextArea">Enter budget information here</textarea>
+        <h1 id="flights">Flights</h1>
+        <!-- <ul id="flightsList" contentEditable="true"> -->
+        </ul>
+        <div id="addContainer"></div>
+        <button id="addSection" class="red">Add Section</button>
+        <script src="../static/index.js"></script>
+      </div>
+      <div id = "map-container">
+        <input id = "pac-input" class = "controls" type="text" placeholder="Enter a location">
+        <div id = "map"></div>
+      </div>
+    </div>
   </div>
-  {% endif %}
-  {% endblock %}
+</div>
+  
+{% endif %}
+{% endblock %}
+
+{% block javascript %}
+<script>
+  var itineraryTextArea = document.getElementById('itineraryTextArea');
+  itineraryTextArea.addEventListener('input', function() {
+    // Update the value attribute of the textarea with its current content
+    itineraryTextArea.textContent = itineraryTextArea.value;
+  });
+  var budgetTextArea = document.getElementById('budgetTextArea');
+  budgetTextArea.addEventListener('input', function() {
+    // Update the value attribute of the textarea with its current content
+    budgetTextArea.textContent = budgetTextArea.value;
+  });
+</script>
+
+<script>
+      // Get a reference to the existing div
+    var mapContainer = document.getElementById('map-container');
+    mapContainer.innerHTML = "";
+
+    // Create the new input element and set its attributes
+    var inputElement = document.createElement('input');
+    inputElement.setAttribute('id', 'pac-input');
+    inputElement.setAttribute('class', 'controls');
+    inputElement.setAttribute('type', 'text');
+    inputElement.setAttribute('placeholder', 'Enter a location');
+
+    // Create the new div element and set its attribute
+    var mapDiv = document.createElement('div');
+    mapDiv.setAttribute('id', 'map');
+
+    // Append the new elements to the existing div
+    mapContainer.appendChild(inputElement);
+    mapContainer.appendChild(mapDiv);
+</script>
+
+<script async
+src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAc1sFeVc8kWDw2h7HemExZhw9BYutbaHc&libraries=places&callback=initAutocomplete">
+</script> 
+<script>
+  function initMap() {
+    var newCenter = new google.maps.LatLng({{ lat_content }}, {{ lng_content }}); // for example, New York City
+    window.map.panTo(newCenter);
+  }
+  window.onload = function() {
+    // Your code goes here
+    initMap();
+  };
+</script>
+{% endblock %}

@@ -4,20 +4,65 @@
   font-family: Verdana;
 }
 
+/* Title styling */
 .title {
-  font-size: 35px;
+  text-align: center;
+  position: relative;
+  font-size: 40px !important;
   margin-top: 10px;
 }
 
-body {
-  margin-left: 15px;
-  padding: 1vh;
-  color: black;
-  background-color: 	#fff4d1;
+h1{
+  font-size: 25px !important;
 }
 
-#title {
-  padding-top: 5px;
+/* Wrapper element to act as backdrop for whole page */
+#wrapper{
+  background-image: url("../static/clouds.jpg");
+  position: absolute;
+  /*justify-content: center;*/
+  height: 100%;
+  width: 100%;
+}
+
+/* Banner element to house page title */
+#banner {
+  align-items: center;
+  padding: 3%;
+  height: 10%;
+}
+
+#Save{
+  margin-right: auto;
+}
+
+/* Wrapper for main elements of page */
+#contentWrapper{
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  height: 85%;
+  padding-top: 2%;
+}
+
+/* Wrapper for "trip advisor elements" like itinerary and overview */
+#TripWrapper{
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, .3);
+  width: 22%;
+  margin-left: 2%;
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-bottom: 10px;
+  height: 95%;
+}
+
+/* Content Editable portion to type where user is going  */
+#trip{
+  text-align: center;
 }
 
 /* Define the style for all buttons */
@@ -31,7 +76,7 @@ button {
   }
   /* Define the style for red buttons */
   button.red {
-    background-color: #f44336; /* set background color to red */
+    background-color: rgb(238, 102, 97); /* set background color to red */
   }
   /* Define the style for red buttons on hover */
   button.red:hover {
@@ -41,28 +86,111 @@ button {
   button.red:active {
     background-color: #b71c1c; /* set even darker background color when active/pressed */
   }
-[contenteditable]:hover {
-    background-color: #f1f1f1;
-  }
-#addContainer {
-    display: flex;
-    flex-direction: column;
-  }
-
-#banner {
-  /* The image used */
-  padding: 3%;
-  height: 200px;
-  background-size:contain;
-  background-repeat: no-repeat;
-  background-image:
-  url('https://source.unsplash.com/1600x900/?city');
-  background-position:right
-}
-
-ul {
+/* Overview list */
+  ul {
   margin-left: 15px;
   padding: 1vh;
 }
+
+
+/* Boxarea adjustments for itinerary and budget and spending */
+.boxArea{
+  padding-top: 15px;
+  margin-top: 5px;
+  background-color: rgba(255, 255, 255, .2);
+  border: none;
+  width: 100%;
+  border-radius: 5px;
+  min-height: 20%;
+}
+
+/* Flights section */
+#flights{
+  padding-top: 25px;
+  padding-bottom: 10px;
+}
+
+/* #infowindow-content .title {
+  font-weight: bold;
+} */
+
+
+[contenteditable]:hover {
+    background-color: #f1f1f1;
+    
+  }
+/* Container for Google Map API */
+#map-container {
+  width: 65%;
+  height: 95%;
+  margin-right: 5%;
+  border-radius: 20px;
+}
+
+/* Google Map API object */
+#map {
+  width: 100%;
+  height: 100%;
+  border-radius: 25px;
+}
+
+#infowindow-content {
+  display: none;
+}
+
+#map #infowindow-content {
+  display: inline;
+}
+
+/* Pac items are for Google Maps styling */
+
+.pac-card {
+  background-color: #fff;
+  border: 0;
+  border-radius: 2px;
+  box-shadow: 0 1px 4px -1px rgba(0, 0, 0, 0.3);
+  margin: 10px;
+  padding: 0 0.5em;
+  font: 400 18px Roboto, Arial, sans-serif;
+  overflow: hidden;
+  font-family: Roboto;
+  padding: 0;
+}
+#pac-container {
+  padding-bottom: 12px;
+  margin-right: 12px;
+}
+
+.pac-controls {
+  display: inline-block;
+  padding: 5px 11px;
+}
+
+.pac-controls label {
+  font-family: Roboto;
+  font-size: 13px;
+  font-weight: 300;
+}
+
+#pac-input {
+  background-color: #fff;
+  font-family: Roboto;
+  font-size: 15px;
+  font-weight: 300;
+  margin-left: 12px;
+  padding: 0 11px 0 13px;
+  text-overflow: ellipsis;
+  width: 400px;
+}
+
+#pac-input:focus {
+  border-color: #4d90fe;
+}
   
-  
+.no-left-padding {
+  width: 100%;
+  padding-right: 15px;
+  margin-right: auto;
+  padding-left: 0;
+  margin-left: 0;
+}

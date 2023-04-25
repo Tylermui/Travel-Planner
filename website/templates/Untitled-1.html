@@ -1,0 +1,35 @@
+ { lat:{% if lat %}{{ lat }}{% else %}40.7128{% endif %}, lng:{% if lng %}{{ lng }}{% else %}-74.0060{% endif %} },
+
+ document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('Save').addEventListener('click', function() {
+      var body = document.getElementById("tripcontainer").outerHTML;
+  
+      // Get the current center coordinates of the map
+      var mapCenter = window.map.getCenter();
+      // Log the latitude and longitude coordinates to the console
+      var lat = mapCenter.lat();
+      var lng = mapCenter.lng();
+  
+      // send body variable to the server using ajax: /save route as POST request
+      // create a new XMLHttpRequest object
+      var xhttp = new XMLHttpRequest();
+      // set the callback function to handle the response
+      xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+          console.log("Response received: " + this.responseText);
+        }
+      };
+      // open a new POST request with the Flask route as the endpoint
+      xhttp.open("POST", "/save");
+      // set the request header to send data as JSON
+      xhttp.setRequestHeader("Content-type", "application/json");
+      // send the request with the data
+      // Create a data object with the body and location data
+      var data = {
+        body: body,
+        lat: lat,
+        lng: lng
+      };
+      xhttp.send(JSON.stringify(data));   
+    });
+  });

@@ -7,7 +7,6 @@
 # source travel-env/bin/activate
 # flask --app app run 
 
-# from flask import Flask, render_template, redirect, url_for, request, session
 from website import create_app
 
 app = create_app()
